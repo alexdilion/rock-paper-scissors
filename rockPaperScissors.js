@@ -23,18 +23,21 @@ function playRound(playerSelection, computerSelection) {
   if (playerSelection != computerSelection) {
     switch (playerSelection) {
       case "rock":
+      case "r":
         if (computerSelection == "scissors") {
           return ["You win! Rock beats scissors.", "win"];
         } else {
           return ["You lose! Paper beats rock.", "loss"];
         }
       case "paper":
+      case "p":
         if (computerSelection == "rock") {
           return ["You win! Paper beats rock.", "win"];
         } else {
           return ["You lose! Scissors beats paper.", "loss"];
         }
       case "scissors":
+      case "s":
         if (computerSelection == "paper") {
           return ["You win! Scissors beats paper.", "win"];
         } else {
@@ -101,7 +104,7 @@ function game(roundNumber = 5) {
   }
 
   // output end of game message
-  console.log(`${checkWinner(playerWins, playerLosses)} \nYou scored ${playerWins} round wins and ${playerLosses} round losses.`);
+  console.log(`${checkWinner(playerWins, playerLosses)} \nYou scored ${playerWins} wins and ${playerLosses} losses.`);
 }
 
 let roundNumber = +prompt("How many rounds of 'Rock! Paper! Scissors!' would you like to play?");
