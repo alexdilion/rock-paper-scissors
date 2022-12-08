@@ -1,4 +1,6 @@
-function getComputerChoice() {
+// randomly generate a computer selection
+function getComputerSelection() {
+  // generate a random number between 1 and 3
   let randomNumber = Math.floor(Math.random() * 3);
 
   switch (randomNumber) {
@@ -11,10 +13,13 @@ function getComputerChoice() {
   }
 }
 
+// play a round
+// returns an array with a message and the round outcome [message, outcome]
 function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase();
   computerSelection = computerSelection.toLowerCase();
 
+  // check if selections are not tied
   if (playerSelection != computerSelection) {
     switch (playerSelection) {
       case "rock":
@@ -44,6 +49,7 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+// check whether player won or lost
 function checkWinner(playerWins, playerLosses) {
   if (playerWins > playerLosses) {
     return "You win!";
@@ -54,41 +60,48 @@ function checkWinner(playerWins, playerLosses) {
   }
 }
 
+// main function
 function game(roundNumber = 5) {
-  let wins = 0;
-  let losses = 0;
+  let playerWins = 0;
+  let playerLosses = 0;
 
+  // play game for x number of rounds
   for (let i = 0; i < roundNumber; i++) {
+    // get input
     let playerSelection = prompt("Enter rock, paper or scissors:");
-    let computerSelection = getComputerChoice();
+    let computerSelection = getComputerSelection();
 
     let result = playRound(playerSelection, computerSelection);
 
+    // check round outcome
     if (result[1] == 'win') {
-      wins += 1;
+      playerWins += 1;
     } else if (result[1] == 'loss')
-      losses += 1;
+      playerLosses += 1;
     else {
+      // if we get a tie, loop until the tie is broken
       while (true) {
         playerSelection = prompt("You tied! Enter rock, paper or scissors:");
-        computerSelection = getComputerChoice();
+        computerSelection = getComputerSelection();
 
         result = playRound(playerSelection, computerSelection);
 
         if (result[1] == "win") {
-          wins += 1;
+          playerWins += 1;
           break;
         } else if (result[1] == "loss") {
-          losses += 1;
+          playerLosses += 1;
           break;
         }
       }
     }
 
+    // output round outcome message
     console.log(result[0]);
   }
 
-  console.log(`${checkWinner(wins, losses)} \nYou scored ${wins} round wins and ${losses} round losses.`);
+  // output end of game message
+  console.log(`${checkWinner(playerWins, playerLosses)} \nYou scored ${playerWins} round wins and ${playerLosses} round losses.`);
 }
 
 let roundNumber = +prompt("How many rounds of 'Rock! Paper! Scissors!' would you like to play?");
