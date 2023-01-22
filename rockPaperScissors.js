@@ -1,111 +1,57 @@
+const buttons = [...document.querySelector("#buttons").children];
+const results = document.querySelector("#results");
+
+const roundOutcomes = {
+  "rock": {"rock": "tie", "paper": "loss", "scissors": "win"},
+  "paper": {"rock": "win", "paper": "tie", "scissors": "loss"},
+  "scissors": {"rock": "loss", "paper": "win", "scissors": "tie"}
+}
+
+let playerWins = 0;
+let computerWins = 0;
+
 // randomly generate a computer selection
 function getComputerSelection() {
+  const choices = ["rock", "paper", "scissors"];
   // generate a random number between 1 and 3
   let randomNumber = Math.floor(Math.random() * 3);
-
-  switch (randomNumber) {
-    case 0:
-      return "Rock";
-    case 1:
-      return "Paper";
-    case 2:
-      return "Scissors";
-  }
+  
+  return choices[randomNumber];
 }
 
 // play a round
-// returns an array with a message and the round outcome [message, outcome]
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
   playerSelection = playerSelection.toLowerCase();
-  computerSelection = computerSelection.toLowerCase();
+  computerSelection = getComputerSelection();
 
-  // check if selections are not tied
-  if (playerSelection != computerSelection) {
-    switch (playerSelection) {
-      case "rock":
-      case "r":
-        if (computerSelection == "scissors") {
-          return ["You win! Rock beats scissors.", "win"];
-        } else {
-          return ["You lose! Paper beats rock.", "loss"];
-        }
-      case "paper":
-      case "p":
-        if (computerSelection == "rock") {
-          return ["You win! Paper beats rock.", "win"];
-        } else {
-          return ["You lose! Scissors beats paper.", "loss"];
-        }
-      case "scissors":
-      case "s":
-        if (computerSelection == "paper") {
-          return ["You win! Scissors beats paper.", "win"];
-        } else {
-          return ["You lose! Rock beats scissors.", "loss"];
-        }
-      default:
-        alert("Enter a valid selection!");
-        break;
-    }
+  // get round outcome
+  let outcome = roundOutcomes[playerSelection][computerSelection]
+
+  if (outcome === "win") {
+    playerWins++;
+  } else if (outcome === "loss") {
+    computerWins++;
   } else {
-    return ["Tie!", "tie"];
+    return
   }
 }
 
-// check whether player won or lost
-function checkWinner(playerWins, playerLosses) {
-  if (playerWins > playerLosses) {
-    return "You win!";
-  } else if (playerWins < playerLosses) {
-    return "You lost :(";
+function buttonPressed(e) {
+  const button = e.target;
+  let playerSelection = button.id;
+
+  if (playerWins < 5 && computerWins < 5) {
+    playRound(playerSelection);
   } else {
-    return "Draw!";
-  }
-}
-
-// main function
-function game(roundNumber = 5) {
-  let playerWins = 0;
-  let playerLosses = 0;
-
-  // play game for x number of rounds
-  for (let i = 0; i < roundNumber; i++) {
-    // get input
-    let playerSelection = prompt("Enter rock, paper or scissors:");
-    let computerSelection = getComputerSelection();
-
-    let result = playRound(playerSelection, computerSelection);
-
-    // check round outcome
-    if (result[1] == 'win') {
-      playerWins += 1;
-    } else if (result[1] == 'loss')
-      playerLosses += 1;
-    else {
-      // if we get a tie, loop until the tie is broken
-      while (true) {
-        playerSelection = prompt("You tied! Enter rock, paper or scissors:");
-        computerSelection = getComputerSelection();
-
-        result = playRound(playerSelection, computerSelection);
-
-        if (result[1] == "win") {
-          playerWins += 1;
-          break;
-        } else if (result[1] == "loss") {
-          playerLosses += 1;
-          break;
-        }
-      }
+    let answer = prompt("Do you want to play again? (y/n)");
+    
+    if (answer === "y") {
+      computerWins = 0;
+      playerWins = 0;
     }
-
-    // output round outcome message
-    console.log(result[0]);
   }
-
-  // output end of game message
-  console.log(`${checkWinner(playerWins, playerLosses)} \nYou scored ${playerWins} wins and ${playerLosses} losses.`);
 }
 
-let roundNumber = +prompt("How many rounds of 'Rock! Paper! Scissors!' would you like to play?");
-game(roundNumber);
+buttons.forEach((button) => {
+  button.addEventListener('click', buttonPressed)
+})
