@@ -1,5 +1,8 @@
-const buttons = [...document.querySelector("#buttons").children];
-const results = document.querySelector("#results");
+const buttons = [...document.querySelector(".buttons").children];
+const results = document.querySelector(".results");
+
+let playerScoreText = document.querySelector("#playerScore");
+let computerScoreText = document.querySelector("#computerScore");
 
 const roundOutcomes = {
   "rock": {"rock": "tie", "paper": "loss", "scissors": "win"},
@@ -19,6 +22,12 @@ function getComputerSelection() {
   return choices[randomNumber];
 }
 
+// update text score
+function displayScore() {
+  playerScoreText.textContent = playerWins;
+  computerScoreText.textContent = computerWins;
+}
+
 // play a round
 function playRound(playerSelection) {
   playerSelection = playerSelection.toLowerCase();
@@ -29,10 +38,10 @@ function playRound(playerSelection) {
 
   if (outcome === "win") {
     playerWins++;
+    displayScore();
   } else if (outcome === "loss") {
     computerWins++;
-  } else {
-    return
+    displayScore();
   }
 }
 
@@ -48,6 +57,7 @@ function buttonPressed(e) {
     if (answer === "y") {
       computerWins = 0;
       playerWins = 0;
+      displayScore();
     }
   }
 }

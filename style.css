@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.main {
+  background-color: #e7e7e7;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.score-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score-container h3 {
+  margin: 0;
+}
+
+.results {
+  text-align: center;
+}
+
+.score-container, 
+.buttons,
+.results {
+  margin: 10px;
+}
+
+.results h3 {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
