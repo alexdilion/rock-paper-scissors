@@ -19,8 +19,30 @@ body {
 
 .page-header {
   text-align: center;
-  margin: 30px;
+  margin: 0;
+  margin-top: 30px;
   color: #ed6a5a;
+}
+
+.github-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .8em;
+  margin: 10px auto 30px;
+}
+
+.github-logo {
+  height: 40px;
+  width: auto;
+}
+
+.github-wrapper a {
+  font-size: 20px;
+}
+
+.github-wrapper a:hover {
+  color: #17b9ff;
 }
 
 .game-wrapper {
@@ -51,10 +73,12 @@ body {
 
 #player-score {
   color: #17b9ff;
+  margin-left: 20px;
 }
 
 #computer-score {
   color: #ed6a5a;
+  margin-right: 20px;
 }
 
 .image-wrapper p {
