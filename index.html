@@ -7,22 +7,38 @@
 		<link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>Rock Paper Scissors :D</h1>
-
-    <div class="main">
-			<div class="score-container">
-				<div id="playerScore">0</div>
-				<h3>Score</h3>
-				<div id="computerScore">0</div>
+		<div id="main">
+			<h1 class="page-header">Rock Paper Scissors</h1>
+			<div class="game-wrapper">
+				<div class="display-wrapper">
+					<div class="score" id="player-score">1</div>
+					<div class="display">
+						<h2 id="game-state">You win! Rock beats scissors!</h2>
+						<div class="image-wrapper">
+							<img src="./images/rock.png" alt="User guess: Rock" id="player-image" class="game-image" />
+							<p>VS</p>
+							<img src="./images/scissors.png" alt="Computer guess: Scissors" id="computer-image" class="game-image" />
+						</div>
+					</div>
+					<div class="score" id="computer-score">0</div>
+				</div>
+				<div class="input-wrapper">
+					<p>Pick a hand:</p>
+					<div class="button-wrapper">
+						<input type="image" src="./images/rock.png" alt="Pick rock button" id="button-rock" class="rps-button">
+						<input type="image" src="./images/paper.png" alt="Pick paper button" id="button-paper" class="rps-button">
+						<input type="image" src="./images/scissors.png" alt="Pick scissors button" id="button-scissors" class="rps-button">
+					</div>
 			</div>
-			<div class="buttons">
-				<button id="rock">Rock</button>
-				<button id="paper">Paper</button>
-				<button id="scissors">Scissors</button>
+			<div class="history-wrapper">
+				<p>Turn history:</p>
+				<ul id="turn-history" class="non-empty-ul">
+					<li id="current-turn">You chose rock and won!</li>
+					<li>You chose paper and lost!</li>
+					<li>You chose scissors and tied!</li>
+				</ul>
 			</div>
-			<div class="results">
-				<h3>Results</h3>
 			</div>
-    </div>
+		</div>
   </body>
 </html>

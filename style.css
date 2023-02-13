@@ -1,44 +1,118 @@
+@font-face {
+  font-family: roboto-mono;
+  src: url("./fonts/Roboto-Mono.ttf");
+}
+
 * {
   box-sizing: border-box;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: roboto-mono;
+  color: #2b2b2b;
 }
 
 body {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0;
 }
 
-.main {
-  background-color: #e7e7e7;
+.page-header {
+  text-align: center;
+  margin-bottom: 2em;
+  color: #ed6a5a;
+}
+
+.game-wrapper {
+  border: 1px solid #ddd;
   border-radius: 10px;
   padding: 20px;
 }
 
-.score-container {
+.display-wrapper {
   display: flex;
-  justify-content: space-between;
+  gap: 40px;
   align-items: center;
+  justify-content: space-between;
 }
 
-.score-container h3 {
-  margin: 0;
+.image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.results {
+.score {
+  font-size: 50px;
+  font-weight: 1000;
+  margin-top: 70px;
+}
+
+#player-score {
+  color: #17b9ff;
+}
+
+#computer-score {
+  color: #ed6a5a;
+}
+
+.image-wrapper p {
+  font-size: 30px;
+  font-weight: bold;
+  color: #ddd;
+}
+
+#computer-image {
+  transform: scaleX(-1);
+}
+
+.input-wrapper p {
+  font-size: 20px;
   text-align: center;
 }
 
-.score-container, 
-.buttons,
-.results {
-  margin: 10px;
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
-.results h3 {
-  margin-top: 0;
-  margin-bottom: 1em;
+.rps-button {
+  height: 100px;
+  width: 100px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.rps-button:hover {
+  border-color: #17b9ff;
+}
+
+#turn-history {
+  list-style-type: none;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin: 0;
+}
+
+.history-wrapper p {
+  font-size: 20px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+#turn-history {
+  text-align: center;
+}
+
+.empty-ul {
+  padding: 20px;
+}
+
+.non-empty-ul {
+  padding: 10px;
+}
+
+#current-turn {
+  color: #17b9ff;
 }
