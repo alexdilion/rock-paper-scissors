@@ -10,6 +10,8 @@ let gameState = document.querySelector("#game-state");
 let playerScoreCounter = document.querySelector("#player-score");
 let computerScoreCounter = document.querySelector("#computer-score");
 let turnHistory = document.querySelector("#turn-history");
+let playerImage = document.querySelector("#player-image");
+let computerImage = document.querySelector("#computer-image")
 
 let currentTurnElement;
 
@@ -26,7 +28,7 @@ function getComputerSelection() {
 }
 
 // update game state, win counters and output turn outcome to history
-function outputResult(outcome, playerSelection) {
+function displayResult(outcome, playerSelection) {
 	gameState.textContent = `You ${outcome}!`;
 
 	playerScoreCounter.textContent = playerWins;
@@ -44,22 +46,30 @@ function outputResult(outcome, playerSelection) {
 	turnHistory.appendChild(newElement);
 }
 
+function updateImages(playerSelection, computerSelection) {
+	playerImage.src = `./images/${playerSelection}.png`
+	computerImage.src = `./images/${computerSelection}.png`
+}
+
 // play a round
 function playRound(playerSelection) {
     playerSelection = playerSelection.toLowerCase();
-    computerSelection = getComputerSelection();
-
-	// Set page images to relevant images
+    let computerSelection = getComputerSelection();
 
     let outcome = roundOutcomes[playerSelection][computerSelection];
 
+	updateImages(playerSelection, computerSelection);
+
     if (outcome === "win") {
         playerWins++;
+		displayResult("won", playerSelection)
 		// Output to history that player won
     } else if (outcome === "loss") {
         computerWins++;
+		displayResult("lost", playerSelection)
 		// Output to history that player lost
     } else {
+		displayResult("tied", playerSelection)
 		// Output to history that player tied
 	}
 }

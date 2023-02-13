@@ -13,7 +13,7 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   margin: 0;
 }
 
@@ -86,6 +86,11 @@ body {
 
 .rps-button:hover {
   border-color: #17b9ff;
+  cursor: pointer;
+}
+
+.rps-button:active {
+  background-color: #c1eeff;
 }
 
 #turn-history {
