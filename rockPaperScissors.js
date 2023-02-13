@@ -75,6 +75,8 @@ function restart() {
 
     playerImage.classList.add("transparent");
     computerImage.classList.add("transparent");
+	playerImage.src = ""
+	computerImage.src = ""
 
 	// Empty turnHistory ul
     turnHistory.innerHTML = "";

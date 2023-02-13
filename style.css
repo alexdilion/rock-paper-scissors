@@ -58,7 +58,7 @@ body {
   justify-content: space-between;
 }
 
-.image-wrapper {
+.images-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -81,7 +81,7 @@ body {
   margin-right: 20px;
 }
 
-.image-wrapper p {
+.images-wrapper p {
   font-size: 30px;
   font-weight: bold;
   color: #ddd;
@@ -89,18 +89,21 @@ body {
 
 #computer-image {
   transform: scaleX(-1);
-  border-color: #ed6a5a;
 }
 
-#player-image {
-  border-color: #17b9ff;
-}
-
-.game-image {
+.image-wrapper {
   border: 1px solid #ddd;
   border-radius: 10px;
   height: 175px;
   width: 175px;
+}
+
+#player-image-wrapper {
+  border-color: #17b9ff;
+}
+
+#computer-image-wrapper {
+  border-color: #ed6a5a;
 }
 
 .input-wrapper p {
