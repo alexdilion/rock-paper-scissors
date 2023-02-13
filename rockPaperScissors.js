@@ -11,9 +11,9 @@ let playerScoreCounter = document.querySelector("#player-score");
 let computerScoreCounter = document.querySelector("#computer-score");
 let turnHistory = document.querySelector("#turn-history");
 let playerImage = document.querySelector("#player-image");
-let computerImage = document.querySelector("#computer-image")
+let computerImage = document.querySelector("#computer-image");
 
-let currentTurnElement;
+let currentTurnElement = null;
 
 let playerWins = 0;
 let computerWins = 0;
@@ -29,26 +29,47 @@ function getComputerSelection() {
 
 // update game state, win counters and output turn outcome to history
 function displayResult(outcome, playerSelection) {
-	gameState.textContent = `You ${outcome}!`;
+    gameState.textContent = `You ${outcome}!`;
 
-	playerScoreCounter.textContent = playerWins;
-	computerScoreCounter.textContent = computerWins;
+    playerScoreCounter.textContent = playerWins;
+    computerScoreCounter.textContent = computerWins;
 
-	if (currentTurnElement !== undefined) {
-		currentTurnElement.removeAttribute("id");
-	}
+    if (currentTurnElement !== null) {
+        currentTurnElement.removeAttribute("id");
+    }
 
-	let newElement = document.createElement("li");
-	newElement.id = "current-turn";
-	newElement.textContent = `You chose ${playerSelection} and ${outcome}`;
+    let newElement = document.createElement("li");
+    newElement.id = "current-turn";
+    newElement.textContent = `You chose ${playerSelection} and ${outcome}`;
 
-	currentTurnElement = newElement;
-	turnHistory.appendChild(newElement);
+    currentTurnElement = newElement;
+    turnHistory.appendChild(newElement);
 }
 
 function updateImages(playerSelection, computerSelection) {
-	playerImage.src = `./images/${playerSelection}.png`
-	computerImage.src = `./images/${computerSelection}.png`
+    if (playerImage.classList.contains("transparent")) {
+        playerImage.classList.remove("transparent");
+        computerImage.classList.remove("transparent");
+    }
+
+    playerImage.src = `./images/${playerSelection}.png`;
+    computerImage.src = `./images/${computerSelection}.png`;
+}
+
+function restart() {
+    computerWins = 0;
+    playerWins = 0;
+    currentTurnElement = null;
+
+    playerScoreCounter.textContent = "0";
+    computerScoreCounter.textContent = "0";
+
+    playerImage.classList.add("transparent");
+    computerImage.classList.add("transparent");
+
+    turnHistory.innerHTML = "";
+
+	turnHistory.classList = "empty-ul";
 }
 
 // play a round
@@ -58,25 +79,26 @@ function playRound(playerSelection) {
 
     let outcome = roundOutcomes[playerSelection][computerSelection];
 
-	updateImages(playerSelection, computerSelection);
+    updateImages(playerSelection, computerSelection);
 
     if (outcome === "win") {
         playerWins++;
-		displayResult("won", playerSelection)
-		// Output to history that player won
+        displayResult("won", playerSelection);
     } else if (outcome === "loss") {
         computerWins++;
-		displayResult("lost", playerSelection)
-		// Output to history that player lost
+        displayResult("lost", playerSelection);
     } else {
-		displayResult("tied", playerSelection)
-		// Output to history that player tied
-	}
+        displayResult("tied", playerSelection);
+    }
 }
 
 function onButtonClicked(e) {
     const button = e.target;
     let playerSelection = button.id;
+
+	if (turnHistory.hasChildNodes && turnHistory.classList == "empty-ul") {
+		turnHistory.classList = "non-empty-ul";
+	}
 
     if (playerWins < 5 && computerWins < 5) {
         playRound(playerSelection);
@@ -84,8 +106,7 @@ function onButtonClicked(e) {
         let answer = prompt("Do you want to play again? (y/n)");
 
         if (answer === "y") {
-            computerWins = 0;
-            playerWins = 0;
+			restart();
         }
     }
 }
