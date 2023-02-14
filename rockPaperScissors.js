@@ -15,6 +15,8 @@ let computerScoreCounter = document.querySelector("#computer-score");
 let turnHistory = document.querySelector("#turn-history");
 let playerImage = document.querySelector("#player-image");
 let computerImage = document.querySelector("#computer-image");
+let overlay = document.querySelector(".overlay");
+let playAgainButton = document.querySelector("#button-play-again");
 
 // Holds the current turn li, null if there are no li in turnHistory (this is for the blue highlighting)
 let currentTurnElement = null;
@@ -107,10 +109,19 @@ function playRound(playerSelection) {
 
 // Ask player if they want to play again
 function promptPlayAgain() {
-    let answer = confirm("Do you want to play again?");
+    console.log(overlay)
+    overlay.style.display = "block";
+    document.querySelector("html").classList.add("vignette");
+    document.querySelector("#main").classList.add("blur-element");
 
-    if (answer) {
-        restart();
+    let overlayHeader = document.querySelector("#game-outcome");
+
+    if (playerWins === 5) {
+        overlayHeader.classList = "win-text";
+        overlayHeader.textContent = "You Have Won! :D";
+    } else {
+        overlayHeader.classList = "loss-text";
+        overlayHeader.textContent = "You have lost! :(";
     }
 }
 
@@ -127,10 +138,8 @@ function onButtonClicked(e) {
         playRound(playerSelection);
     } else {
 		if (playerWins === 5) {
-			alert("You beat the computer! :D");
 			promptPlayAgain();
 		} else if (computerWins === 5) {
-			alert("You lost! :(");
 			promptPlayAgain();
 		}
 	}
@@ -139,3 +148,10 @@ function onButtonClicked(e) {
 buttons.forEach((button) => {
     button.addEventListener("click", onButtonClicked);
 });
+
+playAgainButton.addEventListener("click", () => {
+    overlay.style.display = "none";
+    document.querySelector("html").classList.remove("vignette");
+    document.querySelector("#main").classList.remove("blur-element");
+    restart();
+})

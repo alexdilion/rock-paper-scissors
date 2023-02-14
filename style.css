@@ -129,6 +129,7 @@ body {
   width: 100px;
   border: 1px solid #ddd;
   border-radius: 10px;
+  transition: border-color 0.25s;
 }
 
 .rps-button:hover {
@@ -189,8 +190,17 @@ hr {
 
 /* Overlay styling */
 
-/* .overlay {
-  display: none;
+.vignette {
+  box-shadow: 0 0 100px #000 inset;
+}
+
+.overlay-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -198,7 +208,52 @@ hr {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #2b2b2b;
-  opacity: 0.2;
+  background-color: rgba(19, 19, 19, 0.75);
+  display: none;
 }
- */
+
+.blur-element {
+  filter: blur(4px);
+}
+
+.overlay * {
+  opacity: 1;
+}
+
+.overlay-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.overlay-content h1 {
+  font-size: 50px;
+}
+
+.win-text {
+  color: #17b9ff;
+}
+
+.loss-text {
+  color: #ed6a5a;
+}
+
+#button-play-again {
+  font-size: 30px;
+  border-radius: 10px;
+  padding: 15px 20px;
+  font-weight: bold;
+  transition: border-color .25s, color .25s, background-color .25s;
+  border: 1px solid #fff;
+  color: #fff;
+  background-color: #17b9ff;
+}
+
+#button-play-again:hover {
+  background-color: #fff;
+  color: #17b9ff;
+  border-color: #17b9ff;
+  cursor: pointer;
+}
