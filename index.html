@@ -20,18 +20,25 @@
 					<div class="display">
 						<h2 id="game-state">Pick a hand!</h2>
 						<div class="images-wrapper">
-							<div class="image-wrapper" id="player-image-wrapper">
-								<img src="" alt="Image for your guess" id="player-image" class="game-image transparent"/>
+							<div>
+								<p>You</p>
+								<div class="image-wrapper" id="player-image-wrapper">
+									<img src="" alt="Image for your guess" id="player-image" class="game-image transparent"/>
+								</div>
 							</div>
 							<p>VS</p>
-							<div class="image-wrapper" id="computer-image-wrapper">
-								<img src="" alt="Image for the computer's guess" id="computer-image" class="game-image transparent"/>
+							<div>
+								<p>Computer</p>
+								<div class="image-wrapper" id="computer-image-wrapper">
+									<img src="" alt="Image for the computer's guess" id="computer-image" class="game-image transparent"/>
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="score" id="computer-score">0</div>
 				</div>
 				<div class="input-wrapper">
+					<hr>
 					<p>Pick a hand:</p>
 					<div class="button-wrapper">
 						<input type="image" src="./images/rock.png" alt="Pick rock button" id="rock" class="rps-button">
@@ -40,11 +47,15 @@
 					</div>
 			</div>
 			<div class="history-wrapper">
+				<hr>
 				<p>Turn history:</p>
 				<ul id="turn-history" class="empty-ul">
 				</ul>
 			</div>
 			</div>
 		</div>
+		<!-- <div class="overlay">
+			<h1 id="game-outcome" class="win-text">You Won!</h1>
+		</div> -->
   </body>
 </html>

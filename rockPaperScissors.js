@@ -82,6 +82,7 @@ function restart() {
     turnHistory.innerHTML = "";
 
     turnHistory.classList = "empty-ul";
+    gameState.textContent = "Pick a hand!";
 }
 
 // Play a round
