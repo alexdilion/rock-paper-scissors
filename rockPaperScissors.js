@@ -111,7 +111,6 @@ function playRound(playerSelection) {
 function promptPlayAgain() {
     console.log(overlay)
     overlay.style.display = "block";
-    document.querySelector("html").classList.add("vignette");
     document.querySelector("#main").classList.add("blur-element");
 
     let overlayHeader = document.querySelector("#game-outcome");
